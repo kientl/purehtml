@@ -1,11 +1,79 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Xin chào từ GitHub Pages</title>
+  <meta charset="UTF-8">
+  <title>Tab đơn giản</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .tabs {
+      display: flex;
+      cursor: pointer;
+    }
+    .tab {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      background-color: #f1f1f1;
+      margin-right: 5px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    .tab.active {
+      background-color: white;
+      font-weight: bold;
+      border-bottom: 1px solid white;
+    }
+    .tab-content {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: white;
+    }
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <h1>Chào bạn!</h1>
-    <p>Đây là trang HTML thuần được tạo hoàn toàn online.</p>
+
+<div class="tabs">
+  <div class="tab active" data-tab="tab1">Báo cáo ngày</div>
+  <div class="tab" data-tab="tab2">Phương tiện</div>
+</div>
+
+<div class="tab-content">
+  <div id="tab1" class="tab-pane active">
+    <h2>Báo cáo ngày</h2>
+    <p>Nội dung cho báo cáo ngày.</p>
+  </div>
+  <div id="tab2" class="tab-pane">
+    <h2>Phương tiện</h2>
+    <p>Nội dung cho phương tiện.</p>
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panes = document.querySelectorAll('.tab-pane');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Bỏ active tất cả tabs và tab-pane
+      tabs.forEach(t => t.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+
+      // Active tab được click và pane tương ứng
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
 </body>
 </html>
+
