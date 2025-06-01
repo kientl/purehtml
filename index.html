@@ -2,83 +2,80 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Tab đơn giản</title>
+  <title>Trang có 2 Tab</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
     }
+
     .tabs {
       display: flex;
       cursor: pointer;
+      border-bottom: 2px solid #ccc;
+      margin-bottom: 10px;
     }
+
     .tab {
       padding: 10px 20px;
       border: 1px solid #ccc;
       border-bottom: none;
       background-color: #f1f1f1;
       margin-right: 5px;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
     }
+
     .tab.active {
-      background-color: white;
+      background-color: #fff;
+      border-top: 2px solid #007BFF;
+      border-left: 2px solid #007BFF;
+      border-right: 2px solid #007BFF;
       font-weight: bold;
-      border-bottom: 1px solid white;
     }
+
     .tab-content {
-      border: 1px solid #ccc;
-      padding: 20px;
-      background-color: white;
-    }
-    .tab-pane {
       display: none;
+      border: 2px solid #007BFF;
+      padding: 20px;
+      background-color: #fff;
     }
-    .tab-pane.active {
+
+    .tab-content.active {
       display: block;
     }
   </style>
 </head>
 <body>
 
-<div class="tabs">
-  <div class="tab active" data-tab="tab1">Tài khoản</div>
-  <div class="tab" data-tab="tab2">Báo cáo ngày</div>
-  <div class="tab" data-tab="tab3">Phương tiện</div>
-</div>
-
-<div class="tab-content">
-  <div id="tab1" class="tab-pane active">
-    <h2>Tài khoản</h2>
-    <p>Bạn là ai?</p>
+  <div class="tabs">
+    <div class="tab active" data-tab="tab1">Người dùng</div>
+    <div class="tab" data-tab="tab2">Danh mục</div>
   </div>
-  <div id="tab2" class="tab-pane">
-    <h2>Báo cáo ngày</h2>
-    <p>Nội dung cho báo cáo ngày.</p>
+
+  <div id="tab1" class="tab-content active">
+    <h2>Người dùng</h2>
+    <p>Đây là nội dung của tab Người dùng.</p>
   </div>
-  <div id="tab3" class="tab-pane">
-    <h2>Phương tiện</h2>
-    <p>Nội dung cho phương tiện.</p>
+
+  <div id="tab2" class="tab-content">
+    <h2>Danh mục</h2>
+    <p>Đây là nội dung của tab Danh mục.</p>
   </div>
-</div>
 
-<script>
-  const tabs = document.querySelectorAll('.tab');
-  const panes = document.querySelectorAll('.tab-pane');
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Bỏ active tất cả tabs và tab-pane
-      tabs.forEach(t => t.classList.remove('active'));
-      panes.forEach(p => p.classList.remove('active'));
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Xóa class active khỏi tất cả tab và nội dung
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
 
-      // Active tab được click và pane tương ứng
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.tab).classList.add('active');
+        // Thêm class active vào tab và nội dung được chọn
+        tab.classList.add('active');
+        document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
-
